@@ -20,10 +20,7 @@ const strip = (string, matcher) => string.replace(matcher, EMPTY_STRING);
 const input = read(path.join(__dirname, "input.txt"), "utf-8");
 const lines = input.trim().split(/\r?\n/);
 
-const numberWordMatcher = new RegExp(
-  `${Object.keys(DIGIT_MAP).join("|")}`,
-  "gi"
-);
+const numberWordMatcher = new RegExp(Object.keys(DIGIT_MAP).join("|"), "gi");
 
 const [first, second] = [
   lines,
@@ -50,7 +47,8 @@ const [first, second] = [
 ].map((values) =>
   values
     .map((line) => strip(line, /[a-z]/gi))
-    .map((numbers) => parseInt(`${numbers[0]}${numbers.slice(-1)}`))
+    .map((numbers) => `${numbers[0]}${numbers.slice(-1)}`)
+    .map(Number)
     .reduce(sum, 0)
 );
 
