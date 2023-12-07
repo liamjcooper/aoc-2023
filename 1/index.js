@@ -1,4 +1,4 @@
-const { readFileSync: read } = require("fs");
+const { read } = require("../lib");
 const path = require("path");
 
 const EMPTY_STRING = "";
@@ -17,7 +17,7 @@ const DIGIT_MAP = {
 const sum = (first, second) => (first += second);
 const strip = (string, matcher) => string.replace(matcher, EMPTY_STRING);
 
-const input = read(path.join(__dirname, "input.txt"), "utf-8");
+const input = read(path.join(__dirname, "input.txt"));
 const lines = input.trim().split(/\r?\n/);
 
 const numberWordMatcher = new RegExp(Object.keys(DIGIT_MAP).join("|"), "gi");
